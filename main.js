@@ -30,26 +30,39 @@ const printStacks = () => {
 };
 
 // Next, what do you think this function should do?
-const movePiece = () => {
+const movePiece = (arr) => {
+  const stone = Object.values(stacks);
+  console.log(stone);
   // Your code here
 };
 
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
+// this function is going to return move piece
+// and I need to figure how to allow pieces to be arranged in desc. order
 const isLegal = () => {
   // Your code here
   if (
-    stacks[4] > 
+    stacks.a[0] ||
+    stacks.a[1] ||
+    stacks.a[1] > stacks.a[2] ||
+    stacks.a[2] > stacks.a[1]
   )
+    return true;
 };
 
 // What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
+  // if (stacks.a[])
   // Your code here
 };
 
 // When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
   // Your code here
+  // print stack function first
+  // check if move legal, and allow move. If move is not legal display error message
+  // function should move pieces
+  // check to see if game was won
 };
 
 const getPrompt = () => {
