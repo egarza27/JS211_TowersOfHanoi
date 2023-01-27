@@ -1,6 +1,7 @@
 "use strict";
 
 const assert = require("assert");
+const { KeyObject } = require("crypto");
 const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
@@ -30,30 +31,24 @@ const printStacks = () => {
 };
 
 // Next, what do you think this function should do?
-const movePiece = (arr) => {
-  const stone = Object.values(stacks);
-  console.log(stone);
-  // Your code here
+const movePiece = (startStack, endStack) => {
+  startStack = stacks["a"].pop();
+  endStack = stacks["b"].push(startStack);
+  // movePiece();
+  // get last element from current stack and store in variable use pop and push
 };
-
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
-// this function is going to return move piece
-// and I need to figure how to allow pieces to be arranged in desc. order
-const isLegal = () => {
+const isLegal = (startStack, endStack) => {
   // Your code here
-  if (
-    stacks.a[0] ||
-    stacks.a[1] ||
-    stacks.a[1] > stacks.a[2] ||
-    stacks.a[2] > stacks.a[1]
-  )
-    return true;
+  // modify function to take same variables as towers of hanoi func. below
+  if (!startStack > endStack);
+  movePiece();
+  false;
 };
 
 // What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
-  // if (stacks.a[])
-  // Your code here
+  //
 };
 
 // When is this function called? What should it do with its argument?
