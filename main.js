@@ -31,24 +31,40 @@ const printStacks = () => {
 };
 
 // Next, what do you think this function should do?
+
 const movePiece = (startStack, endStack) => {
-  startStack = stacks["a"].pop();
-  endStack = stacks["b"].push(startStack);
-  // movePiece();
+  const stone = stacks[startStack].pop();
+  stacks[endStack].push(stone);
   // get last element from current stack and store in variable use pop and push
 };
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
+/**
+ * Function isLegal
+ * Takes in @parameters (startStack, endStack) or (stone, endStack)
+ * Description: takes in starting and ending rows and compares stone sizes
+ * if smaller stone moving on top of bigger stone allows movement
+ * if bigger stone moving on top of smaller stone, move is illegal
+ *
+ * returns true if legal, false if illegal
+ */
 const isLegal = (startStack, endStack) => {
-  // Your code here
-  // modify function to take same variables as towers of hanoi func. below
-  if (!startStack > endStack);
-  movePiece();
-  false;
+  const startStone = startStack[startStack.length - 1];
+  console.log(startStone);
+  const endStone = endStack[endStack.length - 1];
+  if (
+    startStone < endStone ||
+    (endStone === undefined && startStone !== undefined)
+  )
+    return true;
+  else return false;
+  // conditional statement that checks if start stone is truthy and runs code if true but retrurns false if start stone is not truthy
+  //small stone is moving on top of bigger stone then return true
+  //big stone moving on top of small stone, return false
 };
 
 // What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
-  //
+  console.log("checking for win ");
 };
 
 // When is this function called? What should it do with its argument?
@@ -56,8 +72,11 @@ const towersOfHanoi = (startStack, endStack) => {
   // Your code here
   // print stack function first
   // check if move legal, and allow move. If move is not legal display error message
+  if (isLegal(startStack, endStack)) movePiece(startStack, endStack);
+  else getPrompt();
   // function should move pieces
   // check to see if game was won
+  checkForWin();
 };
 
 const getPrompt = () => {
