@@ -34,7 +34,11 @@ const printStacks = () => {
 
 const movePiece = (startStack, endStack) => {
   const stone = stacks[startStack].pop();
+  console.log(stone);
   stacks[endStack].push(stone);
+
+  // const stone = stacks[startStack].pop();
+  // stacks[endStack].push(stone);
   // get last element from current stack and store in variable use pop and push
 };
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
@@ -52,7 +56,7 @@ const isLegal = (startStack, endStack) => {
   console.log(startStone);
   const endStone = endStack[endStack.length - 1];
   if (
-    startStone < endStone ||
+    startStone > endStone ||
     (endStone === undefined && startStone !== undefined)
   )
     return true;
@@ -72,10 +76,10 @@ const towersOfHanoi = (startStack, endStack) => {
   // Your code here
   // print stack function first
   // check if move legal, and allow move. If move is not legal display error message
-  if (isLegal(startStack, endStack)) movePiece(startStack, endStack);
-  else getPrompt();
-  // function should move pieces
-  // check to see if game was won
+  // if (isLegal(startStack, endStack)) movePiece(startStack, endStack);
+  // else getPrompt();
+  movePiece(startStack, endStack);
+
   checkForWin();
 };
 
