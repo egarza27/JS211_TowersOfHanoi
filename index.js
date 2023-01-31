@@ -1,7 +1,37 @@
 let stone = null;
+let stacks = {
+  bottom: [4, 3, 2, 1],
+  middle: [],
+  top: [],
+};
 
-// this function is called when a row is clicked.
-// Open your inspector tool to see what is being captured and can be used.
+let startRow = null;
+
+const movePiece = (startStack, endStack) => {
+  const stone = stacks[startStack].pop();
+  console.log(stone);
+  stacks[endStack].push(stone);
+  checkForWin();
+};
+
+const isLegal = (startStack, endStack) => {
+  const startStone = stacks[startStack].at(-1);
+  const endStone = stacks[endStack].at(-1);
+  if (!startStack) {
+    return false;
+  } else if (startStone < endStone || !endStone) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const checkForWin = () => {
+  if (stacks["middle"].length === 4 || stacks["top"].length === 4) {
+    window.alert(`Player won!`);
+  } else return false;
+};
+
 let selectRow = (row) => {
   const currentRow = row.getAttribute("data-row");
 
@@ -16,20 +46,22 @@ let selectRow = (row) => {
   }
 };
 
-// this function can be called to get the last stone in the stack
-// but there might be something wrong with it...
 let pickUpStone = (rowID) => {
   const selectedRow = document.getElementById(rowID);
-  console.log(selectedRow);
-  stone = selectedRow.removeChild(selectedRow.lastElementChild);
-  console.log("stone ", stone);
-};
 
-// need to write if else statement to figure out if it is a legal move then drop stone but if not a legal move, do not drop stone
+  startStack = selectedRow.id;
+
+  stone = selectedRow.removeChild(selectedRow.lastElementChild);
+  console.log("stone ", stone.id);
+};
 
 const dropStone = (rowID, Stone) => {
-  startStone = document.getElementById(rowID).appendChild(Stone);
-  stone = null;
+  if (isLegal(startStack, rowID)) {
+    console.log("end stack", rowID);
+    startStone = document.getElementById(rowID).appendChild(Stone);
+    console.log("start stack", startStack);
+    stone = null;
+    movePiece(startStack, rowID);
+    startStack = null;
+  }
 };
-
-// * Remember you can use your logic from 'main.js' to maintain the rules of the game. But how? Follow the flow of data just like falling dominoes.
